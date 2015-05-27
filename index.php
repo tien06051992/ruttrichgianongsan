@@ -30,7 +30,7 @@ $app = new \Slim\Slim();
  * is an anonymous function.
  */
 
-$app->get('/gianongsan/gov', function () {
+$app->get('/gianongsan/gov/', function () {
     $html = file_get_html('http://xttm.mard.gov.vn/Site/vi-VN/189/189/Default.aspx');
 
      // Find all images 
