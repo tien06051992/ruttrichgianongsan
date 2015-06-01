@@ -1,42 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Title of the document</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
+<script src="/assets/js/jquery-1.11.2.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+<body>
 <?php
-/**
- * Step 1: Require the Slim Framework
- *
- * If you are not using Composer, you need to require the
- * Slim Framework and register its PSR-0 autoloader.
- *
- * If you are using Composer, you can skip this step.
- */
-require 'Slim/Slim.php';
-require_once("simple_html_dom.php");
-\Slim\Slim::registerAutoloader();
+	require 'Slim/Slim.php';
+	require_once("simple_html_dom.php");
+	require_once("Requests.php");
+	Requests::register_autoloader();
+	\Slim\Slim::registerAutoloader();
 
-/**
- * Step 2: Instantiate a Slim application
- *
- * This example instantiates a Slim application using
- * its default settings. However, you will usually configure
- * your Slim application now by passing an associative array
- * of setting names and values into the application constructor.
- */
-$app = new \Slim\Slim();
+	$app = new \Slim\Slim();
 
-/**
- * Step 3: Define the Slim application routes
- *
- * Here we define several Slim application routes that respond
- * to appropriate HTTP request methods. In this example, the second
- * argument for `Slim::get`, `Slim::post`, `Slim::put`, `Slim::patch`, and `Slim::delete`
- * is an anonymous function.
- */
-
-$app->get('/gianongsan/gov/', function () {
-    $html = file_get_html('http://xttm.mard.gov.vn/Site/vi-VN/189/189/Default.aspx');
-
-     // Find all images 
-     foreach($html->find('#Anthem__ctl2__ctl4__ctl0_dtgBaoCao__') as $element) 
-       echo $element . '<br>';
-});
+	$app->get('/gianongsan/:action/', function ($action) {
+		require 'controllers/homeCtrl.php';
+	});
 
 /**
  * Step 4: Run the Slim application
@@ -45,3 +30,8 @@ $app->get('/gianongsan/gov/', function () {
  * and returns the HTTP response to the HTTP client.
  */
 $app->run();
+?>
+</body>
+
+</html>
+
