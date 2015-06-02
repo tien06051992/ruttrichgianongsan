@@ -12,6 +12,9 @@
         case 'tinngan':
             require 'controllers/tinnganCtrl.php';
             break;
+        case 'toanthangtags.com':
+            require 'controllers/toanthangtags.comCtrl.php';
+            break;
         default:
             require 'controllers/errorCtrl.php';
             break;
